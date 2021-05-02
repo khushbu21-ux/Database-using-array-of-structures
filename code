@@ -1,0 +1,161 @@
+Create a database using array of structures and perform following operations on it: i. Add record ii. Display Database iii. Search record iv. Delete record.
+
+CODE IN C++:
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+struct student
+{
+	string name;
+	int roll_no;
+	float marks;
+};
+int main()
+{
+    int n,t=0,s=5;
+    cout<<"Enter the number of records"<<endl;
+    cin>>n;
+    struct student str[n+5];
+    for(int i=0;i<n;i++)
+    {
+        cout<<"Name of "<<i+1<<" student:"<<endl;
+        cin>>str[i].name;
+        cout<<"Roll_no of "<<i+1<<" student:"<<endl;
+        cin>>str[i].roll_no;
+        cout<<"Marks of "<<i+1<<" student:"<<endl;
+        cin>>str[i].marks;
+    }
+    do{
+    int ch;
+    cout<<"Enter \n1.Add a record\n2.Display Database\n3.Search record\n4.Delete Record"<<endl;
+    cin>>ch;
+    switch(ch)
+    {
+        case 1:
+        {
+            cout<<"Add a new record(YOU CAN ONLY ADD "<<s<<" records):"<<endl;
+            cout<<"Name of new student:"<<endl;
+            cin>>str[n].name;
+            cout<<"Roll_no of new student:"<<endl;
+            cin>>str[n].roll_no;
+            cout<<"Marks of new student:"<<endl;
+            cin>>str[n].marks;
+            n++;
+            s--;
+        }break;
+        case 2:
+        {
+            cout<<"Display Database:"<<endl;
+            for(int i=0;i<n;i++)
+            {
+                cout<<"Name of "<<i+1<<" student:"<<str[i].name<<endl;
+                cout<<"Roll_no of "<<i+1<<" student:"<<str[i].roll_no<<endl;
+                cout<<"Marks of "<<i+1<<" student:"<<str[i].marks<<endl;
+            }
+        }break;
+        case 3:
+        {
+            cout<<"Search a record:"<<endl;
+            int c;
+            cout<<"Search using:\n1.Name\n2.Roll_no"<<endl;
+            cin>>c;
+            switch(c)
+            {
+                case 1:
+                {
+                    cout<<"Enter name to be searched"<<endl;
+                    string nam;
+                    cin>>nam;
+                    int a=0;
+                    for(int i=0;i<n;i++)
+                    {
+                        if((nam.compare(str[i].name))==0)
+                            a=1;
+                    }
+                    if(a==1)
+                        cout<<"Record found"<<endl;
+                    else
+                        cout<<"Record not found"<<endl;
+                }break;
+                case 2:
+                {
+                    cout<<"Enter Roll_no to be searched"<<endl;
+                    int r,a=0;
+                    cin>>r;
+                    for(int i=0;i<n;i++)
+                    {
+                        if(r==str[i].roll_no)
+                            a=1;
+                    }
+                    if(a==1)
+                        cout<<"Record found"<<endl;
+                    else
+                        cout<<"Record not found"<<endl;
+                }break;
+            }
+        }break;
+        case 4:
+        {
+            cout<<"Delete a record:"<<endl;
+            int c;
+            cout<<"Delete using:\n1.Name\n2.Roll_no"<<endl;
+            cin>>c;
+            switch(c)
+            {
+                case 1:
+                {
+                    cout<<"Enter name to be deleted"<<endl;
+                    string nam;
+                    cin>>nam;
+                    int a=0;
+                    for(int i=0;i<n;i++)
+                    {
+                        if((nam.compare(str[i].name))==0)
+                        {
+                            str[i].name="";
+                            str[i].roll_no=0;
+                            str[i].marks=0;
+                            a=1;
+                        }
+                    }
+                 if(a==1)
+                        cout<<"Record has been deleted"<<endl;
+                    else
+                        cout<<"NO such record found"<<endl;
+                }break;
+                case 2:
+                {
+                    cout<<"Enter Roll_no to be deleted"<<endl;
+                    int r,a=0;
+                    cin>>r;
+                    for(int i=0;i<n;i++)
+                    {
+                        if(r==str[i].roll_no)
+                        {
+                            str[i].name="";
+                            str[i].roll_no=0;
+                            str[i].marks=0;
+                            a=1;
+                        }
+                    }
+                    if(a==1)
+                        cout<<"Record has been deleted"<<endl;
+                    else
+                        cout<<"NO such record found"<<endl;
+                }break;
+                
+            }
+        }break;
+        
+    }
+    cout<<"Enter 1 to continue editing records."<<endl;
+    cin>>t;
+    }
+    while(t==1);
+	return 0;
+}
+
+
+
